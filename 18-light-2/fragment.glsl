@@ -12,6 +12,8 @@ uniform vec3 ambient;
 uniform vec3 diffuse;
 uniform vec3 lightDirection;
 
+varying vec3 n;
 void main() {
-  gl_FragColor = vec4(1,1,1,1);
+  float weight = max(dot(n,lightDirection), 0.);
+  gl_FragColor = vec4(ambient + diffuse*weight, 1.0);
 }
